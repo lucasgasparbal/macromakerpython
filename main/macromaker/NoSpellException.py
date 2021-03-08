@@ -1,0 +1,2 @@
+class NoSpellException(Exception):
+    pass
