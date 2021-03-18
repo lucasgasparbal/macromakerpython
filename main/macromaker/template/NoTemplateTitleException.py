@@ -1,0 +1,2 @@
+class NoTemplateTitleException(Exception):
+    pass

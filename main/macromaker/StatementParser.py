@@ -5,44 +5,24 @@ from macromaker.StatementConditionsParser import StatementConditionsParser
 
 class StatementParser:
     STATEMENTSPLITFLAG = ";"
-    SPELLQUOTATIONMARK = '"'
 
     def __init__(self):
         self.statementConditionsParser = StatementConditionsParser()
 
-    def parseStatements(self, inputString):
+    def parseStatements(self, inputString, spellExtractor):
         statementStrings = inputString.split(self.STATEMENTSPLITFLAG)
 
         statements = []
         for statementString in statementStrings:
-            statement = Statement()
+            extractedStrings = spellExtractor.extractSpell(statementString)
+            spell = extractedStrings[0]
+            statementString = extractedStrings[1]
 
-            spell = self.searchSpell(statementString)
-            statementString = statementString.replace(self.SPELLQUOTATIONMARK+spell+self.SPELLQUOTATIONMARK, "")
+            statement = Statement()
             statement.addSpell(spell)
 
             statementConditions = self.statementConditionsParser.parseConditions(statementString)
             statement.addConditions(statementConditions)
-
             statements.append(statement)
 
         return statements
-
-
-
-    def searchSpell(self, text):
-        spellFound = False
-        spellName = ""
-        for character in text:
-            if character == self.SPELLQUOTATIONMARK:
-
-                if not spellFound:
-                    spellFound = True
-                else:
-
-                    return spellName
-
-            elif spellFound:
-                spellName = spellName + character
-
-        raise NoSpellException

@@ -1,0 +1,2 @@
+class NotEnoughSpellsException(Exception):
+    pass

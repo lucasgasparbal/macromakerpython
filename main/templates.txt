@@ -1,0 +1,27 @@
+
+123
+#showtooltip
+/cast SPELL_PLACEHOLDER
+(END)
+
+mouseover macro
+#showtooltip
+/cast [@player, mod:alt][@mouseover, exists, help, nodead][@target, help, nodead] SPELL_PLACEHOLDER
+(END)
+
+
+
+test
+#showtooltip
+/cast [@mouseover, exists, nodead] SPELL_PLACEHOLDER
+(END)
+
+mouseover-heal-damage
+#showtooltip
+/cast [@player, mod:alt][@mouseover, exists, help, nodead][@target, nodead] SPELL_PLACEHOLDER
+(END)
+
+interrupt
+#showtooltip
+/cast [@focus, exists, nodead][@mouseover, exists, harm, nodead][@target, harm, nodead] SPELL_PLACEHOLDER
+(END)

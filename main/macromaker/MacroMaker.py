@@ -1,8 +1,9 @@
 from macromaker.StatementParser import StatementParser
+from macromaker.StatementSpellExtractor import StatementSpellExtractor
+from macromaker.template.TemplateSpellExtractor import TemplateSpellExtractor
 
 
 class MacroMaker:
-
     TOOLTIPSTRING = "#showtooltip\n"
     CASTSTRING = "/cast "
 
@@ -11,8 +12,15 @@ class MacroMaker:
 
     def makeMacro(self, inputText):
 
-        statements = self.statementParser.parseStatements(inputText)
+        return self.writeMacro(inputText, StatementSpellExtractor())
 
+    def makeMacroTemplate(self, inputText, spellPlaceholder):
+
+        return self.writeMacro(inputText, TemplateSpellExtractor(spellPlaceholder))
+
+    def writeMacro(self, inputText, spellExtractor):
+
+        statements = self.statementParser.parseStatements(inputText, spellExtractor)
         macro = self.TOOLTIPSTRING + self.CASTSTRING
 
         for i, statement in enumerate(statements):
@@ -23,3 +31,5 @@ class MacroMaker:
             macro = macro + statement.write()
 
         return macro
+
+
