@@ -8,7 +8,7 @@ class ShowCommand:
     def execute(self, inputString):
         try:
             templateToShow = self.templateHandler.showTemplate(inputString)
-            print("Template\n")
+            print("\n")
             print(templateToShow)
         except (FileNotFoundError, TemplateNotFoundException) as e:
             print("\nNo template with the given title was found, "

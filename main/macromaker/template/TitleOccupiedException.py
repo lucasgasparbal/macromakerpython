@@ -1,0 +1,2 @@
+class TitleOccupiedException(Exception):
+    pass

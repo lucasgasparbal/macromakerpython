@@ -66,3 +66,11 @@ class TemplateHandler:
             result.append(text.strip())
 
         return result
+
+    def removeTemplate(self, inputText):
+        title = inputText.strip().lower()
+        self.templatesFileHandler.removeTemplate(title)
+
+    def changeTemplateTitle(self, inputText):
+        titles = self.separateTitleAndContent(inputText)
+        self.templatesFileHandler.changeTitleOfTemplate(titles[0],titles[1])

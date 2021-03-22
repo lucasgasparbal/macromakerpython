@@ -3,7 +3,6 @@ class TargetParser:
         self.TARGETS = {
             "self": "player",
             "player": "player",
-            "target": "target",
             "focus": "focus, exists",
             "mouseover": "mouseover, exists"
         }

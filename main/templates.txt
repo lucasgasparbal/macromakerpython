@@ -6,22 +6,25 @@
 
 mouseover macro
 #showtooltip
-/cast [@player, mod:alt][@mouseover, exists, help, nodead][@target, help, nodead] SPELL_PLACEHOLDER
-(END)
-
-
-
-test
-#showtooltip
-/cast [@mouseover, exists, nodead] SPELL_PLACEHOLDER
+/cast [@player, mod:alt][@mouseover, exists, help, nodead][help, nodead] SPELL_PLACEHOLDER
 (END)
 
 mouseover-heal-damage
 #showtooltip
-/cast [@player, mod:alt][@mouseover, exists, help, nodead][@target, nodead] SPELL_PLACEHOLDER
+/cast [@player, mod:alt][@mouseover, exists, help, nodead][nodead] SPELL_PLACEHOLDER
 (END)
 
 interrupt
 #showtooltip
-/cast [@focus, exists, nodead][@mouseover, exists, harm, nodead][@target, harm, nodead] SPELL_PLACEHOLDER
+/cast [@focus, exists, nodead][@mouseover, exists, harm, nodead][harm, nodead] SPELL_PLACEHOLDER
+(END)
+
+test
+#showtooltip
+/cast [harm] SPELL_PLACEHOLDER
+(END)
+
+mouseover-heal
+#showtooltip
+/cast [@player, mod:alt][@mouseover, exists, help, nodead][help, nodead][@player] SPELL_PLACEHOLDER
 (END)

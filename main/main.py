@@ -1,6 +1,8 @@
 from macromaker.MacroMaker import MacroMaker
 from macromaker.NoSpellException import NoSpellException
+from macromaker.template.ChangeTitleCommand import ChangeTitleCommand
 from macromaker.template.LoadCommand import LoadCommand
+from macromaker.template.RemoveCommand import RemoveCommand
 from macromaker.template.SaveCommand import SaveCommand
 from macromaker.template.TemplateHandler import TemplateHandler
 from macromaker.template.ShowCommand import ShowCommand
@@ -12,13 +14,24 @@ def main():
     saveCommand = SaveCommand(templateHandler)
     loadCommand = LoadCommand(templateHandler)
     showCommand = ShowCommand(templateHandler)
+    removeCommand = RemoveCommand(templateHandler)
+    changeTitleCommand = ChangeTitleCommand(templateHandler)
     commands = {
+        "add": saveCommand,
         "save": saveCommand,
         "savetemplate": saveCommand,
         "load": loadCommand,
         "loadtemplate": loadCommand,
         "show": showCommand,
-        "showtemplate": showCommand
+        "showtemplate": showCommand,
+        "remove":removeCommand,
+        "removetemplate":removeCommand,
+        "delete":removeCommand,
+        "del":removeCommand,
+        "deletetemplate":removeCommand,
+        "changetitle": changeTitleCommand,
+        "change": changeTitleCommand
+
     }
 
     macromaker = MacroMaker()
