@@ -1,40 +1,16 @@
 from macromaker.MacroMaker import MacroMaker
+from macromaker.InstructionsHelper import InstructionsHelper
 from macromaker.NoSpellException import NoSpellException
-from macromaker.template.ChangeTitleCommand import ChangeTitleCommand
-from macromaker.template.LoadCommand import LoadCommand
-from macromaker.template.RemoveCommand import RemoveCommand
-from macromaker.template.SaveCommand import SaveCommand
-from macromaker.template.TemplateHandler import TemplateHandler
-from macromaker.template.ShowCommand import ShowCommand
+from macromaker.template.CommandsInterface import CommandsInterface
+from macromaker.template.CommandNotFoundException import CommandNotFoundException
 
 
 def main():
     print("----Macromaker program alpha version----\n\n\n\n")
-    templateHandler = TemplateHandler()
-    saveCommand = SaveCommand(templateHandler)
-    loadCommand = LoadCommand(templateHandler)
-    showCommand = ShowCommand(templateHandler)
-    removeCommand = RemoveCommand(templateHandler)
-    changeTitleCommand = ChangeTitleCommand(templateHandler)
-    commands = {
-        "add": saveCommand,
-        "save": saveCommand,
-        "savetemplate": saveCommand,
-        "load": loadCommand,
-        "loadtemplate": loadCommand,
-        "show": showCommand,
-        "showtemplate": showCommand,
-        "remove":removeCommand,
-        "removetemplate":removeCommand,
-        "delete":removeCommand,
-        "del":removeCommand,
-        "deletetemplate":removeCommand,
-        "changetitle": changeTitleCommand,
-        "change": changeTitleCommand
-
-    }
-
     macromaker = MacroMaker()
+    commandInterface = CommandsInterface(macromaker)
+    helper = InstructionsHelper(macromaker, commandInterface)
+
     programRunning = True
     while programRunning:
 
@@ -42,24 +18,33 @@ def main():
         splitInput = textInput.split(maxsplit=1)
         commandString = splitInput[0].strip()
         commandString = commandString.lower()
-        command = commands.get(commandString)
-        if command:
-            command.execute(splitInput[1])
-        elif textInput.lower().strip() == "exit":
-            programRunning = False
-        else:
+        try:
+            if len(splitInput) > 1:
+                commandInterface.executeCommand(commandString, splitInput[1])
+            else:
+                commandInterface.executeCommand(commandString,"")
 
-            try:
-                textToShow = macromaker.makeMacro(textInput)
-                print("\nYour macro:\n\n\n")
-            except NoSpellException:
-                textToShow = '\nERROR.\n' \
-                             'There was one or more statements without a spell. Ensure every statement has one spell ' \
-                             'marked by "" quotation marks. '
+        except CommandNotFoundException:
+            if commandString == "exit":
+                programRunning = False
+            elif commandString == "help":
+                if len(splitInput) > 1:
+                    helper.processHelp()
+                else:
+                    helper.processHelp("")
+            else:
+                try:
+                    textToShow = macromaker.makeMacro(textInput)
+                    print("\nYour macro:\n\n\n")
+                except NoSpellException:
+                    textToShow = '\nERROR.\n' \
+                                 'There was one or more statements without a spell. Ensure every statement has one spell ' \
+                                 'marked by "" quotation marks. '
+                print(textToShow)
 
-            print(textToShow)
     print("\nclosing Macromaker")
     return
+
 
 if __name__ == "__main__":
     main()

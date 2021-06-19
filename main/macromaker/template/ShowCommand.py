@@ -12,4 +12,8 @@ class ShowCommand:
             print(templateToShow)
         except (FileNotFoundError, TemplateNotFoundException) as e:
             print("\nNo template with the given title was found, "
-                  "make sure the desired template is inside the templates.txt file or save a new template with the given title")
+                  "make sure the desired template is inside the templates.txt file or save a new template with the "
+                  "given title")
+
+    def getParameters(self):
+        return self.templateHandler.getFunctionParameters("show")

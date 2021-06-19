@@ -29,3 +29,6 @@ class LoadCommand:
             print("\nERROR.\n'"
                   "No template with the given title was found, "
                   "make sure the template is inside the templates.txt file or save a new template with the given title")
+
+    def getParameters(self):
+        return self.templateHandler.getFunctionParameters("load")

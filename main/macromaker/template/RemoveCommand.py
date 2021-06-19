@@ -12,3 +12,6 @@ class RemoveCommand:
        except (FileNotFoundError, TemplateNotFoundException):
            print("\nERROR.\n"
                  "There was no template found with the given title")
+
+    def getParameters(self):
+        return self.templateHandler.getFunctionParameters("remove")

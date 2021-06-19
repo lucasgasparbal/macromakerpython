@@ -31,5 +31,3 @@ class MacroMaker:
             macro = macro + statement.write()
 
         return macro
-
-

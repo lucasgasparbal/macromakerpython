@@ -69,19 +69,19 @@ class MacroMakerTest(unittest.TestCase):
         macromaker = MacroMaker()
 
         expectedMacro = "#showtooltip\n" \
-                        "/cast [@mouseover, exists, help, nodead] Chain Heal; [@target, harm] Chain Lightning"
+                        "/cast [@mouseover, exists, help, nodead] Chain Heal; [harm] Chain Lightning"
 
-        self.assertEqual(expectedMacro, macromaker.makeMacro(' mouseover ally alive "Chain Heal"; target enemy "Chain Lightning"'))
+        self.assertEqual(expectedMacro, macromaker.makeMacro(' mouseover ally alive "Chain Heal"; enemy "Chain Lightning"'))
 
     def test10MacroMakerMakeMacroWithVariousStatementsAndConditionBlocksReturnsCorrectMacro(self):
         macromaker = MacroMaker()
 
         expectedMacro = "#showtooltip\n" \
-                        "/cast [@player, mod:shift+alt][@mouseover, exists, help, nodead] Chain Heal; [@target, " \
-                        "harm][@mouseover, exists, harm, nodead] Chain Lightning"
+                        "/cast [@player, mod:shift+alt][@mouseover, exists, help, nodead] Chain Heal; " \
+                        "[harm][@mouseover, exists, harm, nodead] Chain Lightning"
 
         self.assertEqual(expectedMacro,
-                         macromaker.makeMacro('player shift alt | mouseover ally alive "Chain Heal"; target enemy | '
+                         macromaker.makeMacro('player shift alt | mouseover ally alive "Chain Heal"; enemy | '
                                               'mouseover enemy alive "Chain Lightning"'))
 
 

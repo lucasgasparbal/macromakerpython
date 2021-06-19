@@ -37,7 +37,7 @@ class TargetParserTest(unittest.TestCase):
     def test07TargetParserWithMoreThanOneTargetKeywordChoosesTheFirstOne(self):
         targetParser = TargetParser()
 
-        self.assertEqual("target", targetParser.parse(["target","player","focus","mouseover"]))
+        self.assertEqual("player", targetParser.parse(["player","focus","mouseover"]))
 
 
 

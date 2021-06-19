@@ -13,3 +13,6 @@ class SaveCommand:
         except NoTemplateTitleException:
             print('\nNo title could be detected in the input. Make sure you separate the title from the content of the ' \
                   'template with ":" ')
+
+    def getParameters(self):
+        return self.templateHandler.getFunctionParameters("save")

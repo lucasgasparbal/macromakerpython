@@ -3,10 +3,10 @@ from macromaker.template.TitleOccupiedException import TitleOccupiedException
 
 
 class ChangeTitleCommand:
-    def __init__(self,templateHandler):
+    def __init__(self, templateHandler):
         self.templateHandler = templateHandler
 
-    def execute(self,inputText):
+    def execute(self, inputText):
         try:
             self.templateHandler.changeTemplateTitle(inputText)
         except TitleOccupiedException:
@@ -17,4 +17,7 @@ class ChangeTitleCommand:
             print("\nERROR\n"
                   "The template you want to change the title of was not found.")
 
-        print("Title changes succesfully.\n")
+        print("Title changed succesfully.\n")
+
+    def getParameters(self):
+        return self.templateHandler.getFunctionParameters("change")

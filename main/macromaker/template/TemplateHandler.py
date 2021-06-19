@@ -1,4 +1,3 @@
-from macromaker.MacroMaker import MacroMaker
 from macromaker.template.NoTemplateTitleException import NoTemplateTitleException
 from macromaker.template.NotEnoughSpellsException import NotEnoughSpellsException
 from macromaker.template.TemplateSpellExtractor import TemplateSpellExtractor
@@ -8,10 +7,17 @@ from macromaker.template.TemplatesFileHandler import TemplatesFileHandler
 class TemplateHandler:
     SPELLPLACEHOLDER = "SPELL_PLACEHOLDER"
     TITLESEPARATOR = ":"
+    PARAMETERS = {
+        "save": ["Template title", "Macro syntax"],
+        "load": ["Template title", "Spells"],
+        "show": ["Template title"],
+        "remove": ["Template title"],
+        "change": ["Title to change", "New title"]
+    }
 
-    def __init__(self):
+    def __init__(self, macroMaker):
         self.templatesFileHandler = TemplatesFileHandler()
-        self.macroMaker = MacroMaker()
+        self.macroMaker = macroMaker
 
     def makeMacroTemplate(self, inputText):
 
@@ -73,4 +79,18 @@ class TemplateHandler:
 
     def changeTemplateTitle(self, inputText):
         titles = self.separateTitleAndContent(inputText)
-        self.templatesFileHandler.changeTitleOfTemplate(titles[0],titles[1])
+        self.templatesFileHandler.changeTitleOfTemplate(titles[0], titles[1])
+
+    def getFunctionParameters(self, functionName):
+        try:
+            functionParameters = self.PARAMETERS[functionName]
+            parameterString = self.addParameterSign(functionParameters.pop(0))
+            if functionParameters:
+                parameterString = parameterString + " " + self.TITLESEPARATOR + " " + self.addParameterSign(
+                    functionParameters.pop(0))
+            return parameterString
+        except KeyError:
+            return ""
+
+    def addParameterSign(self, parameter):
+        return "<" + parameter + ">"
