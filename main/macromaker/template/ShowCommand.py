@@ -2,6 +2,9 @@ from macromaker.template.TemplateNotFoundException import TemplateNotFoundExcept
 
 
 class ShowCommand:
+
+    DESCRIPTION = "Shows the given title's macro template on the console, without spells."
+
     def __init__(self, templateHandler):
         self.templateHandler = templateHandler
 
@@ -17,3 +20,6 @@ class ShowCommand:
 
     def getParameters(self):
         return self.templateHandler.getFunctionParameters("show")
+
+    def getDescription(self):
+        return self.DESCRIPTION

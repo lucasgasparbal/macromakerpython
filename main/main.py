@@ -29,7 +29,7 @@ def main():
                 programRunning = False
             elif commandString == "help":
                 if len(splitInput) > 1:
-                    helper.processHelp()
+                    helper.processHelp(splitInput[1])
                 else:
                     helper.processHelp("")
             else:

@@ -83,12 +83,15 @@ class TemplateHandler:
 
     def getFunctionParameters(self, functionName):
         try:
-            functionParameters = self.PARAMETERS[functionName]
-            parameterString = self.addParameterSign(functionParameters.pop(0))
+
+            functionParameters = self.PARAMETERS[functionName].copy()
+
             if functionParameters:
-                parameterString = parameterString + " " + self.TITLESEPARATOR + " " + self.addParameterSign(
-                    functionParameters.pop(0))
-            return parameterString
+                parameterString = self.addParameterSign(functionParameters.pop(0))
+                for parameter in functionParameters:
+                    parameterString = parameterString + " " + self.TITLESEPARATOR + " " + self.addParameterSign(parameter)
+                return parameterString
+            return ""
         except KeyError:
             return ""
 

@@ -5,6 +5,10 @@ from macromaker.template.NotEnoughSpellsException import NotEnoughSpellsExceptio
 
 
 class LoadCommand:
+
+    DESCRIPTION="Writes the given macro template with the given spell on the console.\n Keep in mind each template has " \
+                "a required number of spells "
+
     def __init__(self, templateHandler):
         self.templateHandler = templateHandler
 
@@ -32,3 +36,6 @@ class LoadCommand:
 
     def getParameters(self):
         return self.templateHandler.getFunctionParameters("load")
+
+    def getDescription(self):
+        return self.DESCRIPTION

@@ -28,3 +28,8 @@ mouseover-heal
 #showtooltip
 /cast [@player, mod:alt][@mouseover, exists, help, nodead][help, nodead][@player] SPELL_PLACEHOLDER
 (END)
+
+focusinterrupt
+#showtooltip
+/cast [@focus, exists][] SPELL_PLACEHOLDER
+(END)

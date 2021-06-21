@@ -3,6 +3,8 @@ from macromaker.template.NoTemplateTitleException import NoTemplateTitleExceptio
 
 class SaveCommand:
 
+    DESCRIPTION= "Saves the given marco syntax as a template, to be accessed with the other commands using it's title."
+
     def __init__(self, templateHandler):
         self.templateHandler = templateHandler
 
@@ -16,3 +18,6 @@ class SaveCommand:
 
     def getParameters(self):
         return self.templateHandler.getFunctionParameters("save")
+
+    def getDescription(self):
+        return self.DESCRIPTION

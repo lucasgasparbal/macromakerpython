@@ -56,3 +56,31 @@ class CommandsInterface:
             commandsAndParameters[key] = command.getParameters()
 
         return commandsAndParameters
+
+    def getCommandAlternativeCalls(self, commandName):
+
+        command = self.getCommand(commandName)
+        alternativeCalls = []
+        for key in self.commands.keys():
+            if self.commands[key] == command and key != commandName:
+                alternativeCalls.append(key)
+
+        return alternativeCalls
+
+    def getCommandDescription(self,commandName):
+
+        command = self.getCommand(commandName)
+        return command.getDescription()
+
+    def getCommand(self, commandName):
+        try:
+            command = self.commands[commandName]
+            return command
+        except KeyError:
+            raise CommandNotFoundException
+
+    def getParameters(self, commandName):
+        try:
+            return self.commands[commandName].getParameters()
+        except KeyError:
+            raise CommandNotFoundException

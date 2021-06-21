@@ -3,6 +3,10 @@ from macromaker.template.TitleOccupiedException import TitleOccupiedException
 
 
 class ChangeTitleCommand:
+
+    DESCRIPTION = "Changes the title of the first title's template with the second given title. If the second title\n " \
+                  "is already in use, it won't change the title."
+
     def __init__(self, templateHandler):
         self.templateHandler = templateHandler
 
@@ -21,3 +25,6 @@ class ChangeTitleCommand:
 
     def getParameters(self):
         return self.templateHandler.getFunctionParameters("change")
+
+    def getDescription(self):
+        return self.DESCRIPTION

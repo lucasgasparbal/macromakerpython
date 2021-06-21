@@ -2,6 +2,9 @@ from macromaker.template.TemplateNotFoundException import TemplateNotFoundExcept
 
 
 class RemoveCommand:
+
+    DESCRIPTION = "Removes the given template from the files"
+
     def __init__(self,templateHandler):
         self.templateHandler = templateHandler
 
@@ -15,3 +18,6 @@ class RemoveCommand:
 
     def getParameters(self):
         return self.templateHandler.getFunctionParameters("remove")
+
+    def getDescription(self):
+        return self.DESCRIPTION
