@@ -9,10 +9,11 @@ class MacroMaker:
 
     def __init__(self):
         self.statementParser = StatementParser()
+        self.statementSpellExtractor = StatementSpellExtractor()
 
     def makeMacro(self, inputText):
 
-        return self.writeMacro(inputText, StatementSpellExtractor())
+        return self.writeMacro(inputText, self.statementSpellExtractor)
 
     def makeMacroTemplate(self, inputText, spellPlaceholder):
 
@@ -31,3 +32,18 @@ class MacroMaker:
             macro = macro + statement.write()
 
         return macro
+
+    def getSeparators(self):
+        return self.statementParser.getSeparators()
+
+    def getRules(self):
+        rules = []
+        macroRules = "A cast macro is composed of 1 or more statements. statements are composed by one spell and " + \
+                     "one or more condition blocks.A condition block is a group of conditions that have to be met " \
+                     "to " \
+                     "execute an statement "
+
+        rules.append(macroRules)
+        rules.append(self.statementSpellExtractor.getRules())
+        rules.extend(self.statementParser.getRules())
+        return rules

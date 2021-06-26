@@ -15,3 +15,6 @@ class TargetParser:
                 return parsedString
 
         return ""
+
+    def getRules(self):
+        return ["There can only be one target per condition block."]

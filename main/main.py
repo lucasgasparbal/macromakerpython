@@ -6,7 +6,8 @@ from macromaker.template.CommandNotFoundException import CommandNotFoundExceptio
 
 
 def main():
-    print("----Macromaker program alpha version----\n\n\n\n")
+    print("\n\n\n----M A C R O M A K E R----\n\n\n\n")
+    print("for help in using the application and a list of commands, type 'help' \n\n\n")
     macromaker = MacroMaker()
     commandInterface = CommandsInterface(macromaker)
     helper = InstructionsHelper(macromaker, commandInterface)

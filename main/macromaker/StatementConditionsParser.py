@@ -5,7 +5,7 @@ from macromaker.conditionparsing.TargetParser import TargetParser
 
 
 class StatementConditionsParser:
-    CONDITIONSPLITFLAG = "|"
+    CONDITIONSPLITFLAG = "/"
 
     def __init__(self):
         self.conditionsParser = ConditionsParser()
@@ -31,3 +31,18 @@ class StatementConditionsParser:
             statementConditions.append(statementConditionBlock)
 
         return statementConditions
+
+    def getConditionSplitFlag(self):
+        return self.CONDITIONSPLITFLAG
+
+    def getRules(self):
+        rules = []
+        for parser in [self.conditionsParser, self.targetParser, self.modConditionParser]:
+            if parser.getRules():
+                rules.extend(parser.getRules())
+
+        return rules
+
+    def getSeparators(self):
+        separator = {"Condition block separator : ": self.CONDITIONSPLITFLAG}
+        return separator

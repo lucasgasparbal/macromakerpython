@@ -36,3 +36,9 @@ class ConditionsParser:
             condition.clear()
 
         return parsedConditions
+
+    def getRules(self):
+        return [("If one or more given conditions conflict with each other "
+                "(for example, both mouseover and player are passed as targets in the same condition block) "
+                "then the first one is selected."), "If more than one of the same condition are given the repeats are "
+                                                   "ignored."]

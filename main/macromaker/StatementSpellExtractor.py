@@ -13,3 +13,6 @@ class StatementSpellExtractor(SpellExtractor):
 
 
 
+    def getRules(self):
+        return 'All Statements must have a spell, enclosed by double quotation marks(" ")\n' \
+               '\tExample: "Chain Heal" '

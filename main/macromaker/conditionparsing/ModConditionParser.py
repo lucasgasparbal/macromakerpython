@@ -19,3 +19,7 @@ class ModConditionParser:
                 parsedModCondition.addMod(parsedString)
 
         return parsedModCondition
+
+    def getRules(self):
+        return [
+            "You can have more than one modifier applied, up to alt+ctrl+shift. Repeats of the same key are ignored."]

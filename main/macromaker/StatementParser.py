@@ -26,3 +26,11 @@ class StatementParser:
             statements.append(statement)
 
         return statements
+
+    def getSeparators(self):
+        separators = {"Statement separator : ": self.STATEMENTSPLITFLAG}
+        separators.update(self.statementConditionsParser.getSeparators())
+        return separators
+
+    def getRules(self):
+        return self.statementConditionsParser.getRules()
