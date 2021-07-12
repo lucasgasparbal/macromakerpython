@@ -1,16 +1,14 @@
 from macromaker.NoSpellException import NoSpellException
+from macromaker.template.TemplateCommand import TemplateCommand
 from macromaker.template.TemplateNotFoundException import TemplateNotFoundException
 from macromaker.template.NoTemplateTitleException import NoTemplateTitleException
 from macromaker.template.NotEnoughSpellsException import NotEnoughSpellsException
 
 
-class LoadCommand:
+class LoadCommand(TemplateCommand):
 
     DESCRIPTION="Writes the given macro template with the given spell on the console.\n Keep in mind each template has " \
                 "a required number of spells "
-
-    def __init__(self, templateHandler):
-        self.templateHandler = templateHandler
 
     def execute(self, inputString):
         try:
@@ -36,6 +34,3 @@ class LoadCommand:
 
     def getParameters(self):
         return self.templateHandler.getFunctionParameters("load")
-
-    def getDescription(self):
-        return self.DESCRIPTION

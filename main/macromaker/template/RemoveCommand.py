@@ -1,12 +1,10 @@
+from macromaker.template.TemplateCommand import TemplateCommand
 from macromaker.template.TemplateNotFoundException import TemplateNotFoundException
 
 
-class RemoveCommand:
+class RemoveCommand(TemplateCommand):
 
     DESCRIPTION = "Removes the given template from the files"
-
-    def __init__(self,templateHandler):
-        self.templateHandler = templateHandler
 
     def execute(self,inputText):
        try:

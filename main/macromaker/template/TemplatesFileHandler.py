@@ -114,3 +114,21 @@ class TemplatesFileHandler:
                 cleanFileLines.append(line)
                 lastLine = line
         return cleanFileLines
+
+    def getTemplateTitles(self):
+        file = open(self.TEMPLATESFILEPATH, mode='r', encoding='utf-8')
+        fileLines = file.readlines()
+        file.close()
+
+        templateTitles = []
+        titleFound = False
+        for line in fileLines:
+            strippedLine = line.strip("\n")
+            if strippedLine and not titleFound:
+                templateTitles.append(strippedLine)
+                titleFound = True
+            if titleFound:
+                if strippedLine == self.ENDOFTEMPLATEMARKER:
+                    titleFound = False
+
+        return templateTitles

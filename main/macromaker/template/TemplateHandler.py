@@ -97,3 +97,6 @@ class TemplateHandler:
 
     def addParameterSign(self, parameter):
         return "<" + parameter + ">"
+
+    def getTemplateTitles(self):
+        return self.templatesFileHandler.getTemplateTitles()

@@ -1,5 +1,3 @@
-from enum import Enum
-
 from macromaker.template.CommandNotFoundException import CommandNotFoundException
 
 
@@ -35,18 +33,16 @@ class InstructionsHelper:
         print("\nFor a list of available macro conditions, type 'help conditions'. ")
 
     def printAdditionalCommandInstructions(self, commandName):
-        commandParameters = self.commandsInterface.getParameters(commandName)
-        printString = "\n\n" + commandName + " " + commandParameters + "\n\n\n"
-        altCalls = self.commandsInterface.getCommandAlternativeCalls(commandName)
-        if altCalls:
-            printString = printString + "Alternative calls:  " + altCalls.pop(0)
-            for call in altCalls:
-                printString = printString + ", " + call
-            printString = printString + "\n\n"
+        commandHelpInfo = self.commandsInterface.getCommandHelpInfo(commandName)
+        # printString = "\n\n" + commandHelpInfo.getTitle() + "\n\n"
+        # altCalls = commandHelpInfo.getAltCalls()
+        # if altCalls:
+        #     printString = printString + "Alternative calls: " + altCalls
+        #     printString = printString + "\n\n\n"
 
-        printString = printString + "Description: " + self.commandsInterface.getCommandDescription(commandName) + "\n\n"
+        # printString = printString + "Description: " + commandHelpInfo.getDescription() + "\n\n"
 
-        print(printString)
+        print("\n\n" + commandHelpInfo.getHelpInfo())
 
     def printMacroHelp(self):
         printString = "\n\n-SEPARATORS(use without parenthesis)-\n\n"

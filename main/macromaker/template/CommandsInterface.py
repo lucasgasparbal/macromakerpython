@@ -1,5 +1,7 @@
 from macromaker.template.ChangeTitleCommand import ChangeTitleCommand
+from macromaker.template.CommandHelpInfo import CommandHelpInfo
 from macromaker.template.CommandNotFoundException import CommandNotFoundException
+from macromaker.template.ListCommand import ListCommand
 from macromaker.template.LoadCommand import LoadCommand
 from macromaker.template.RemoveCommand import RemoveCommand
 from macromaker.template.SaveCommand import SaveCommand
@@ -17,6 +19,8 @@ class CommandsInterface:
         showCommand = ShowCommand(templateHandler)
         removeCommand = RemoveCommand(templateHandler)
         changeTitleCommand = ChangeTitleCommand(templateHandler)
+        listCommand = ListCommand(templateHandler)
+
         self.commands = {
             "add": saveCommand,
             "save": saveCommand,
@@ -31,8 +35,9 @@ class CommandsInterface:
             "del": removeCommand,
             "deletetemplate": removeCommand,
             "change": changeTitleCommand,
-            "changetitle": changeTitleCommand
-
+            "changetitle": changeTitleCommand,
+            "list": listCommand,
+            "templates": listCommand
         }
 
     def executeCommand(self, commandKey, textInput):
@@ -57,30 +62,22 @@ class CommandsInterface:
 
         return commandsAndParameters
 
-    def getCommandAlternativeCalls(self, commandName):
-
+    def getCommandHelpInfo(self, commandName):
         command = self.getCommand(commandName)
-        alternativeCalls = []
+
+        commandHelpInfo = CommandHelpInfo(commandName, command.getDescription())
+
         for key in self.commands.keys():
             if self.commands[key] == command and key != commandName:
-                alternativeCalls.append(key)
+                commandHelpInfo.addCall(key)
 
-        return alternativeCalls
+        commandHelpInfo.addParameters(command.getParameters())
 
-    def getCommandDescription(self,commandName):
-
-        command = self.getCommand(commandName)
-        return command.getDescription()
+        return commandHelpInfo
 
     def getCommand(self, commandName):
         try:
             command = self.commands[commandName]
             return command
-        except KeyError:
-            raise CommandNotFoundException
-
-    def getParameters(self, commandName):
-        try:
-            return self.commands[commandName].getParameters()
         except KeyError:
             raise CommandNotFoundException
