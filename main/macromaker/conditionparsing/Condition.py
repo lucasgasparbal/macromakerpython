@@ -1,12 +1,13 @@
 class Condition:
-    def __init__(self, optionsDictionary):
+    def __init__(self, options):
         self.conditionSelected = ""
-        self.optionsDictionary = optionsDictionary
+        self.options = options
 
     def checkForCondition(self, string):
-        conditionOption = self.optionsDictionary.get(string.lower())
-        if not self.conditionSelected and conditionOption:
-            self.conditionSelected = conditionOption
+        for option in self.options:
+            optionEvaluation = option.evaluate(string)
+            if not self.conditionSelected and optionEvaluation:
+                self.conditionSelected = optionEvaluation
 
     def write(self):
         return self.conditionSelected

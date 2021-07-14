@@ -1,37 +1,16 @@
 import unittest
+from unittest.mock import MagicMock
+
 from macromaker.conditionparsing.Condition import Condition
 
 
 class ConditionTest(unittest.TestCase):
-    def test01EmptyConditionWritesAnEmptyString(self):
-        condition = Condition({})
-
-        self.assertEqual("", condition.write())
-
-    def test02ConditionWithDictionaryWritesCorrectoCondition(self):
-        condition = Condition({"help": "help"})
-
-        condition.checkForCondition("help")
-
-        self.assertEqual("help", condition.write())
-
-    def test03ConditionWithDictionaryWritesCorrectoCondition(self):
-        condition = Condition({"help": "help"})
-
-        condition.checkForCondition("help")
-
-        self.assertEqual("help", condition.write())
-
-    def test04ConditionWithDictionaryDisregardsCapitalization(self):
-        condition = Condition({"help": "help"})
-
-        condition.checkForCondition("hElP")
-
-        self.assertEqual("help", condition.write())
-
     def test05ConditionWithDictionaryDoesNotChangeTheConditionIfAnotherValidOptionIsGiven(self):
-        condition = Condition({"help": "help",
-                               "harm": "harm"})
+        mockOne = MagicMock()
+        mockTwo = MagicMock()
+        mockOne.evaluate.return_value = "help"
+        mockTwo.evaluate.return_value = "harm"
+        condition = Condition([mockOne,mockTwo])
 
         condition.checkForCondition("help")
         condition.checkForCondition("harm")
@@ -39,8 +18,9 @@ class ConditionTest(unittest.TestCase):
         self.assertEqual("help", condition.write())
 
     def test06ConditionWithDictionaryWritesEmptyStringAfterClear(self):
-        condition = Condition({"help": "help",
-                               "harm": "harm"})
+        mockOne = MagicMock()
+        mockOne.evaluate.return_value = "help"
+        condition = Condition([mockOne])
 
         condition.checkForCondition("help")
         condition.clear()
@@ -48,11 +28,15 @@ class ConditionTest(unittest.TestCase):
         self.assertEqual("", condition.write())
 
     def test07ConditionWithDictionaryWritesSecondConditionIfTheFirstIsCleared(self):
-        condition = Condition({"help": "help",
-                               "harm": "harm"})
+        mockOne = MagicMock()
+        mockTwo = MagicMock()
+        mockOne.evaluate.return_value = "help"
+        mockTwo.evaluate.return_value = "harm"
 
+        condition = Condition([mockOne, mockTwo])
         condition.checkForCondition("help")
         condition.clear()
+        mockOne.evaluate.return_value = ""
         condition.checkForCondition("harm")
 
         self.assertEqual("harm", condition.write())

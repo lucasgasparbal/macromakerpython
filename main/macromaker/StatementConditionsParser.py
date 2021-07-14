@@ -46,3 +46,6 @@ class StatementConditionsParser:
     def getSeparators(self):
         separator = {"Condition block separator : ": self.CONDITIONSPLITFLAG}
         return separator
+
+    def getCategoriesAndConditions(self):
+        pass

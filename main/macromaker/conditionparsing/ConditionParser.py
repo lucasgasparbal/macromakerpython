@@ -1,26 +1,19 @@
 from macromaker.conditionparsing.Condition import Condition
+from macromaker.conditionparsing.ConditionOption import ConditionOption
 
 
 class ConditionsParser:
 
     def __init__(self):
+        allyOption = ConditionOption(["ally", "help"], "help", "Casts the macro if it's target is an ally.")
+        enemyOption = ConditionOption(["enemy", "harm"], "harm", "Casts the macro if it's target is an enemy.")
+        allegianceCondition = Condition([allyOption, enemyOption])
 
-        self.allegianceCondition = Condition({
-            "ally": "help",
-            "help": "help",
-            "enemy": "harm",
-            "harm": "harm"
-        })
+        aliveOption = ConditionOption(["alive", "nodead"], "nodead", "Casts the macro if it's target is alive.")
+        deadOption = ConditionOption(["dead"], "dead", "Casts the macro if it's target is dead.")
+        statusCondition = Condition([aliveOption, deadOption])
 
-        self.statusCondition = Condition(
-            {
-                "alive": "nodead",
-                "nodead": "nodead",
-                "dead": "dead",
-            }
-        )
-
-        self.conditions = [self.allegianceCondition, self.statusCondition]
+        self.conditions = [allegianceCondition, statusCondition]
 
     def parse(self, stringList):
         parsedConditions = []
@@ -39,6 +32,6 @@ class ConditionsParser:
 
     def getRules(self):
         return [("If one or more given conditions conflict with each other "
-                "(for example, both mouseover and player are passed as targets in the same condition block) "
-                "then the first one is selected."), "If more than one of the same condition are given the repeats are "
-                                                   "ignored."]
+                 "(for example, both mouseover and player are passed as targets in the same condition block) "
+                 "then the first one is selected."), "If more than one of the same condition are given the repeats are "
+                                                     "ignored."]

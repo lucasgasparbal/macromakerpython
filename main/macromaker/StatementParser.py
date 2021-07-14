@@ -34,3 +34,6 @@ class StatementParser:
 
     def getRules(self):
         return self.statementConditionsParser.getRules()
+
+    def getCategoriesAndConditions(self):
+        return self.statementConditionsParser.getCategoriesAndConditions()

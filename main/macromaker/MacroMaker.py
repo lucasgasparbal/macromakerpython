@@ -47,3 +47,6 @@ class MacroMaker:
         rules.append(self.statementSpellExtractor.getRules())
         rules.extend(self.statementParser.getRules())
         return rules
+
+    def getCategoriesAndConditons(self):
+        return self.statementParser.getCategoriesAndConditions()

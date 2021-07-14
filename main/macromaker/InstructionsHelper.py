@@ -34,13 +34,6 @@ class InstructionsHelper:
 
     def printAdditionalCommandInstructions(self, commandName):
         commandHelpInfo = self.commandsInterface.getCommandHelpInfo(commandName)
-        # printString = "\n\n" + commandHelpInfo.getTitle() + "\n\n"
-        # altCalls = commandHelpInfo.getAltCalls()
-        # if altCalls:
-        #     printString = printString + "Alternative calls: " + altCalls
-        #     printString = printString + "\n\n\n"
-
-        # printString = printString + "Description: " + commandHelpInfo.getDescription() + "\n\n"
 
         print("\n\n" + commandHelpInfo.getHelpInfo())
 
@@ -68,11 +61,12 @@ class InstructionsHelper:
         print("For a list of available macro conditions, type 'help conditions'.")
         print("\nFor a list of commands, type 'help'. ")
 
-    def printGeneralMacroHelp(self):
-        pass
+    def printConditionsHelp(self):
+        categoriesAndConditions = self.macromaker.getCategoriesAndConditions()
 
     def isMacroFlag(self, parameter):
         for flag in self.MACROFLAGS:
             if parameter == flag:
                 return True
         return False
+

@@ -35,7 +35,7 @@ class TemplateHandlerTEst(unittest.TestCase):
         expectedMacro = "#showtooltip\n" \
                         "/cast [@player, help, nodead][harm, dead] SPELL_PLACEHOLDER"
 
-        self.assertEqual(expectedMacro, templateHandler.makeMacroTemplate("player ally alive | enemy dead"))
+        self.assertEqual(expectedMacro, templateHandler.makeMacroTemplate("player ally alive / enemy dead"))
 
     def test4TemplateHandlerMakeMacroTemplateWithMoreThanOneConditionBlockAndMoreThanOneStatementReturnsExpectedMacro(
             self):
@@ -46,8 +46,8 @@ class TemplateHandlerTEst(unittest.TestCase):
                         "/cast [@player, help, nodead][harm, dead] SPELL_PLACEHOLDER; [@mouseover, exists, " \
                         "help, nodead][@focus, exists, harm] SPELL_PLACEHOLDER"
 
-        self.assertEqual(expectedMacro, templateHandler.makeMacroTemplate("player ally alive | enemy dead; "
-                                                                          "mouseover ally alive | focus enemy"))
+        self.assertEqual(expectedMacro, templateHandler.makeMacroTemplate("player ally alive / enemy dead; "
+                                                                          "mouseover ally alive / focus enemy"))
 
     def test5TemplateHandlerMakeMacroTemplateWithConditionsAndASpellInsideItReturnsExpectedMacroIgnoringSpell(self):
         macromaker = MacroMaker()
