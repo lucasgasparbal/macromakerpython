@@ -5,13 +5,13 @@ from macromaker.conditionparsing.ConditionOption import ConditionOption
 class ConditionsParser:
 
     def __init__(self):
-        allyOption = ConditionOption(["ally", "help"], "help", "Casts the macro if it's target is an ally.")
-        enemyOption = ConditionOption(["enemy", "harm"], "harm", "Casts the macro if it's target is an enemy.")
-        allegianceCondition = Condition([allyOption, enemyOption])
+        allyOption = ConditionOption(["ally", "help"], "help", "Casts the macro if its target is an ally.")
+        enemyOption = ConditionOption(["enemy", "harm"], "harm", "Casts the macro if its target is an enemy.")
+        allegianceCondition = Condition("Target Allegiance", [allyOption, enemyOption])
 
-        aliveOption = ConditionOption(["alive", "nodead"], "nodead", "Casts the macro if it's target is alive.")
-        deadOption = ConditionOption(["dead"], "dead", "Casts the macro if it's target is dead.")
-        statusCondition = Condition([aliveOption, deadOption])
+        aliveOption = ConditionOption(["alive", "nodead"], "nodead", "Casts the macro if its target is alive.")
+        deadOption = ConditionOption(["dead"], "dead", "Casts the macro if its target is dead.")
+        statusCondition = Condition("Target Status", [aliveOption, deadOption])
 
         self.conditions = [allegianceCondition, statusCondition]
 
@@ -33,5 +33,12 @@ class ConditionsParser:
     def getRules(self):
         return [("If one or more given conditions conflict with each other "
                  "(for example, both mouseover and player are passed as targets in the same condition block) "
-                 "then the first one is selected."), "If more than one of the same condition are given the repeats are "
-                                                     "ignored."]
+                 "then the first one is selected.")]
+
+    def getCategoriesAndConditions(self):
+        categoriesAndConditions = {}
+
+        for condition in self.conditions:
+            categoriesAndConditions.update(condition.getCategoriesAndConditions())
+
+        return categoriesAndConditions

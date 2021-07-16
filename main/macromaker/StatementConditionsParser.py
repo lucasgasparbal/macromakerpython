@@ -11,6 +11,7 @@ class StatementConditionsParser:
         self.conditionsParser = ConditionsParser()
         self.modConditionParser = ModConditionParser()
         self.targetParser = TargetParser()
+        self.parsers = [self.conditionsParser, self.modConditionParser, self.targetParser]
 
     def parseConditions(self, inputText):
         text = inputText.lower()
@@ -48,4 +49,8 @@ class StatementConditionsParser:
         return separator
 
     def getCategoriesAndConditions(self):
-        pass
+        categoriesAndConditions = {}
+        for parser in self.parsers:
+            categoriesAndConditions.update(parser.getCategoriesAndConditions())
+
+        return categoriesAndConditions

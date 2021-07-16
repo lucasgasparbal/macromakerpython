@@ -10,7 +10,7 @@ class ConditionTest(unittest.TestCase):
         mockTwo = MagicMock()
         mockOne.evaluate.return_value = "help"
         mockTwo.evaluate.return_value = "harm"
-        condition = Condition([mockOne,mockTwo])
+        condition = Condition("", [mockOne,mockTwo])
 
         condition.checkForCondition("help")
         condition.checkForCondition("harm")
@@ -20,7 +20,7 @@ class ConditionTest(unittest.TestCase):
     def test06ConditionWithDictionaryWritesEmptyStringAfterClear(self):
         mockOne = MagicMock()
         mockOne.evaluate.return_value = "help"
-        condition = Condition([mockOne])
+        condition = Condition("", [mockOne])
 
         condition.checkForCondition("help")
         condition.clear()
@@ -33,7 +33,7 @@ class ConditionTest(unittest.TestCase):
         mockOne.evaluate.return_value = "help"
         mockTwo.evaluate.return_value = "harm"
 
-        condition = Condition([mockOne, mockTwo])
+        condition = Condition("", [mockOne, mockTwo])
         condition.checkForCondition("help")
         condition.clear()
         mockOne.evaluate.return_value = ""

@@ -3,6 +3,7 @@ from macromaker.template.CommandNotFoundException import CommandNotFoundExceptio
 
 class InstructionsHelper:
     MACROFLAGS = ["macro", "macromaker", "macrosyntax"]
+    CONDITIONFLAGS = ["conditions","condition","cond"]
 
     def __init__(self, macromaker, commandsInterface):
         self.macromaker = macromaker
@@ -15,8 +16,10 @@ class InstructionsHelper:
         try:
             self.printAdditionalCommandInstructions(parameter)
         except CommandNotFoundException:
-            if self.isMacroFlag(parameter):
+            if self.isFlag(self.MACROFLAGS,parameter):
                 self.printMacroHelp()
+            elif self.isFlag(self.CONDITIONFLAGS,parameter):
+                self.printConditionsHelp()
             else:
                 self.printCommandsAndParameters()
 
@@ -29,8 +32,8 @@ class InstructionsHelper:
             print("\n\n - " + command + " " + commandsAndParameters[command])
 
         print("\n\nFor more information on each command, type 'help' followed by the command.")
-        print("\nIf you wish to know more about making macros, type 'help macro'. ")
-        print("\nFor a list of available macro conditions, type 'help conditions'. ")
+        print("If you wish to know more about making macros, type 'help macro'. ")
+        print("For a list of available macro conditions, type 'help conditions'. ")
 
     def printAdditionalCommandInstructions(self, commandName):
         commandHelpInfo = self.commandsInterface.getCommandHelpInfo(commandName)
@@ -59,13 +62,21 @@ class InstructionsHelper:
 
         print(printString)
         print("For a list of available macro conditions, type 'help conditions'.")
-        print("\nFor a list of commands, type 'help'. ")
+        print("For a list of commands, type 'help'. ")
 
     def printConditionsHelp(self):
-        categoriesAndConditions = self.macromaker.getCategoriesAndConditions()
+        categoriesAndConditions = self.macromaker.getCategoriesAndConditons()
+        print("CONDITIONS LIST \n")
+        for category in categoriesAndConditions.keys():
+            print("\n------\n"+category.upper())
+            for conditionInfo in categoriesAndConditions[category]:
+                print("\n"+conditionInfo)
+            print("\n")
+        print("If you wish to know more about making macros, type 'help macro'. ")
+        print("For a list of commands, type 'help'. ")
 
-    def isMacroFlag(self, parameter):
-        for flag in self.MACROFLAGS:
+    def isFlag(self, flags, parameter):
+        for flag in flags:
             if parameter == flag:
                 return True
         return False
