@@ -1,4 +1,3 @@
-from macromaker.NoSpellException import NoSpellException
 from macromaker.SpellExtractor import SpellExtractor
 
 

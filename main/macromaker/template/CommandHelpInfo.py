@@ -1,8 +1,8 @@
 class CommandHelpInfo:
-    altCalls = []
-    parameters = ""
 
     def __init__(self, commandName, description):
+        self.altCalls = []
+        self.parameters = ""
         self.commandName = commandName
         self.description = description
 
