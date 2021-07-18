@@ -72,7 +72,7 @@ Macros can have more than one statement, separated by a semicolon (;). In this c
 
 ### Condition Blocks <a name="condition-blocks"></a>
 
-A condition block is a group of conditions, separated by a comma (,) and encased between brackets ([ ]).They are always part of a statement, World of Warcraft checks these conditions to figure out if the statement should be cast. A statement can have more than one condition block, in this case World of Warcraft reads them from first to last. If at least one of them is true the statement's spell will be cast.
+A condition block is a group of conditions, each separated by a comma (,) and all of them encased between brackets ([ ]).They are always part of a statement. World of Warcraft checks these conditions to figure out if the statement should be cast. A statement can have more than one condition block, in this case World of Warcraft checks them from first to last, starting on the leftmost one. If at least one of them is true the statement's spell will be cast.
 
 Condition blocks can also include the specific target of a macro if one desires to have one. 
 
@@ -83,7 +83,7 @@ in the example we have various condition blocks, we will look at the first state
 `[@player, mod:alt]` checks if the "alt" key is held on the keyboard, if it is the spell (in this case Chain Heal" will be cast on the player (denoted by `@player`)
 
 `[@mouseover, exists, help]`<br> 
-`exists` is a condition that checks if the desired target of the condition block exists. It is always used if the target may not exist currently in the game, in this case there might not be a target under the cursor, so in this case the game would check to see if there is one before executing the macro. by pairing it with the `help` condition it will also check if the target under the cursor is a friendly character.
+`exists` is a condition that checks if the desired target of the condition block exists. It is always used if the target may not exist currently in the game, in this case there might not be a target under the cursor, so the game would check to see if there is one before executing the macro. by pairing it with the `help` condition it will also check if the target under the cursor is a friendly character.
 
 
 It is useful to note that the empty condition block `[]` always returns true.
@@ -191,7 +191,7 @@ Inputing this: `player alt / mouseover ally "Chain Heal"; mouseover enemy "Chain
 ### Commands <a name="howto-commands"></a>
 
 <br>
-**NOTE: parameters should be separated by a colon (:) as shown below**
+**NOTE: parameters should be separated by a colon (:), as shown below**
 <br>
 
  - add _[Template title] : [Macromaker macro syntax]_
