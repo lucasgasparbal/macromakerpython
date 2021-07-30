@@ -6,7 +6,8 @@ A console based python program made for easy creation of /cast macro for World o
 
 <br>
 
-##Index
+
+## Index
 
 <br>
 
