@@ -47,7 +47,7 @@ A World of Warcraft /cast macro may look something like this:
 /cast [@player, mod:alt][@mouseover, exists, help] Chain Heal; [@mouseover, exists, harm] Chain Lightning
 ```
 
-The example above casts Chain Heal on the player if the alt key is held; or it casts it on an ally, if the cursor is over them or they are the target. If the target or the unit hovered by the cursor is an enemy it instead casts Chain Lightning.
+The example above casts Chain Heal on the player if the alt key is held; Or it casts it on an ally, if the cursor is over them or they are the target. If the target or the unit hovered by the cursor is an enemy it instead casts Chain Lightning.
 
 
 The line `#showtooltip` makes it so when you hover your cursor over the macro button the tooltip of the spell to be cast is displayed.
@@ -59,14 +59,14 @@ The line `#showtooltip` makes it so when you hover your cursor over the macro bu
 ### Statements <a name="statements"></a>
 
 
-An statement is a group of condition blocks paired with a spell, in the previous example we have two statements:
+An statement is a group of condition blocks paired with a spell. In the previous example we have two statements:
 `[@player, mod:alt][@mouseover, exists, help] Chain Heal` and `[@mouseover, exists, harm] Chain Lightning`
 
- we can see this by looking at the first statement's structure:<br>
+ We can take a look at the first statement's structure:<br>
 `[@player, mod:alt][@mouseover, exists, help]` are the statement's condition blocks and `Chain Heal` is the spell to be cast.
 
 
-Macros can have more than one statement, separated by a semicolon (;). In this case the game will first check if it should cast Chain Heal based on the first statement's conditions, if these first conditions aren't met it will then go on to check the second condition's statements.
+Macros can have more than one statement, separated by a semicolon (;). In this case the game will first check if it should cast Chain Heal based on the first statement's conditions, if these first conditions aren't met it will then go on to check the second statemet's conditions.
 
 <br>
 
@@ -74,7 +74,7 @@ Macros can have more than one statement, separated by a semicolon (;). In this c
 
 A condition block is a group of conditions, each separated by a comma (,) and all of them encased between brackets ([ ]).They are always part of a statement. World of Warcraft checks these conditions to figure out if the statement should be cast. A statement can have more than one condition block, in this case World of Warcraft checks them from first to last, starting on the leftmost one. If at least one of them is true the statement's spell will be cast.
 
-Condition blocks can also include the specific target of a macro if one desires to have one. 
+Condition blocks can also include the specific target of a macro if one desires to have one, noted with the `@` prefix. 
 
 
 in the example we have various condition blocks, we will look at the first statement's: <br>
@@ -83,7 +83,7 @@ in the example we have various condition blocks, we will look at the first state
 `[@player, mod:alt]` checks if the "alt" key is held on the keyboard, if it is the spell (in this case Chain Heal" will be cast on the player (denoted by `@player`)
 
 `[@mouseover, exists, help]`<br> 
-`exists` is a condition that checks if the desired target of the condition block exists. It is always used if the target may not exist currently in the game, in this case there might not be a target under the cursor, so the game would check to see if there is one before executing the macro. by pairing it with the `help` condition it will also check if the target under the cursor is a friendly character.
+`exists` is a condition that checks if the desired target of the condition block exists. It is always used if the target may not exist currently in the game; In this case there might not be a target under the cursor, so the game would check to see if there is one before executing the macro. by pairing it with the `help` condition it will also check if the target under the cursor is a friendly character.
 
 
 It is useful to note that the empty condition block `[]` always returns true.
@@ -113,7 +113,7 @@ Inputing this: `player alt / mouseover ally "Chain Heal"; mouseover enemy "Chain
 
  - **Separators**
       - You must separate statements using a semicolon **(;)** 
-      - For condition blocks use the forward slash **(/)**
+      - For condition blocks, separate them with a forward slash **(/)**
     
  - All Statements must have a spell, enclosed by double quotation marks(" ")
         Example: "Chain Heal" 
@@ -130,6 +130,9 @@ Inputing this: `player alt / mouseover ally "Chain Heal"; mouseover enemy "Chain
 
 <br>
 
+Use the macromaker keys to add the desired condition to the macro. If the condition has more than one Macromaker key you only need to use one of the keys listed.
+
+<br>
 #### Target Standing
 
 - Macromaker keys: help or ally
