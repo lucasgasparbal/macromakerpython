@@ -133,6 +133,7 @@ Inputing this: `player alt / mouseover ally "Chain Heal"; mouseover enemy "Chain
 Use the macromaker keys to add the desired condition to the macro. If the condition has more than one Macromaker key you only need to use one of the keys listed.
 
 <br>
+
 #### Target Standing
 
 - Macromaker keys: help or ally
