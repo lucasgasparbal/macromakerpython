@@ -201,13 +201,13 @@ Use the macromaker keys to add the desired condition to the macro. If the condit
 
  - add _[Template title] : [Macromaker macro syntax]_
   <br>Alternative calls: save, savetemplate
-  <br>Description: Saves the given marco syntax as a template, to be accessed with the other commands using its title. the macro syntax follows  the same rules used in the macromaker program
+  <br>Description: Saves the given macro syntax as a template, to be accessed with the other commands using its title. the macro syntax follows  the same rules used in the macromaker program
   
   
  - load _[Template title] : [Spells]_
   <br>Alternative calls: loadtemplate
   <br> Description: Writes the given macro template with the given spell on the console. **The spell should be encased in double quotation marks (" ")**
-  Keep in mind each template has a required number of spells
+  Keep in mind each template has a required number of spells.
 
  - show _[Template title]_
   <br> Alternative calls: showtemplate
